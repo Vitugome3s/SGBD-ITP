@@ -11,7 +11,7 @@ int main(void)
     scanf("%s", name);
     strcat(name,".txt");
     int key;
-    
+    int count = 0;
     FILE *arquivo;
     // Abre o arquivo para escrita (w)
     arquivo = fopen(name, "w");
@@ -25,11 +25,13 @@ int main(void)
         char aux ='s';
         while (aux == 's')
         {
+        count++;
         printf("Qual a chave primária?");
         scanf("%d", &key);
 
         // Escreve no arquivo
         fprintf(arquivo, "%d | ", key);
+        
         printf("Deseja adicionar outra chave? s ou n?");
         scanf("%s", &aux);
         }
