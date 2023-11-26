@@ -5,8 +5,6 @@ O que precisará ser feito?
 
     Listar todas as tabelas
 
-     Criar uma nova tabela
-
     Listar os dados em uma tabela
 
     Pesquisar valor em uma tabela
