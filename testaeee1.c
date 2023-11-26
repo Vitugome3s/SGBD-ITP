@@ -8,7 +8,7 @@ int main() {
     scanf("%d", &linhas);
     
     if(linhas== 0){
-        printf("Você entrou com 0, tente de novo na próxima");
+        printf("Você entrou com 1, tente de novo na próxima");
     }
 
 //construção do triangulo de floyd
