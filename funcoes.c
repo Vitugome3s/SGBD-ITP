@@ -12,15 +12,13 @@ int criar_tabela(int x)
 {
     char name[30];
     printf("Escolha o nome de sua tabela:");
-    char nome_arquivo[100] = "/arquivos/";
     scanf("%s", name);
-    strcat(nome_arquivo, name);
-    strcat(nome_arquivo, ".txt");
+    strcat(name, ".txt");
     int key;
     int count = x;
     FILE *arquivo;
     // Abre o arquivo para escrita (w)
-    arquivo = fopen(nome_arquivo, "w");
+    arquivo = fopen(name, "w");
     // Verifica se o arquivo foi aberto com sucesso
     if (arquivo == NULL)
     {
