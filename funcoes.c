@@ -9,14 +9,15 @@ void menu()
 }
 
 
-int criar_tabela(int x)
+int criar_tabela()
 {
+    //Escolhe o nome da tabela 
     char name[30];
     printf("Escolha o nome de sua tabela:");
     scanf("%s", name);
     strcat(name, ".txt");
     int key;
-    int count = x;
+    int count = 0;
     FILE *arquivo;
     // Abre o arquivo para escrita (w)
     arquivo = fopen(name, "w");
@@ -36,7 +37,7 @@ int criar_tabela(int x)
             scanf("%d", &key);
 
             // Escreve no arquivo
-            fprintf(arquivo, "%d | ", key);
+            fprintf(arquivo, "%d\n", key);
 
             printf("Deseja adicionar outra chave? s ou n?");
             scanf("%s", &aux);
