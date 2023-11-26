@@ -6,6 +6,6 @@
 
 int main()
 {
-    criar_tabela();
+    menu();
     return 0;
 }
