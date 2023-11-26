@@ -1,8 +1,7 @@
-#ifndef FUNCOES_H_INCLUDED
-#define FUNCOES_H_INCLUDED
+#ifndef FUNCOES_H
+#define FUNCOES_H
 
-int criar_tabela(int);
-
+int criar_tabela();
 void menu(void);
 
-#endif // FUNCOES_H_INCLUDED
+#endif
