@@ -1,16 +1,10 @@
-// O que precisará ser feito?
-// O que precisará ser feito?
+#include <stdlib.h>
+#include <stdio.h>
+#include "funcoes.h"
 
-// Criar uma tabela
+int main(){
 
-// Listar todas as tabelas
+    menu();
 
-// Criar uma nova tabela
-
-// Listar os dados em uma tabela
-
-// Pesquisar valor em uma tabela
-
-// Apagar uma tupla (registro ou linha) de uma tabela
-
-// Apagar uma tabela
+    return 0;
+}
