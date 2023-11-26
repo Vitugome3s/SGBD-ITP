@@ -3,6 +3,8 @@
 int main() {
     int linhas, inicial = 1;
 
+// Definir as listas bla bla bla bla
+
 //definir a quantidade de linhas
 
     scanf("%d", &linhas);
