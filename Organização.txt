@@ -1,5 +1,5 @@
-     O que precisará ser feito?
-    O que precisará ser feito?
+
+O que precisará ser feito?
 
     Criar uma tabela
 
@@ -13,4 +13,4 @@
 
     Apagar uma tupla (registro ou linha) de uma tabela
 
- Apagar uma tabela
+    Apagar uma tabela
