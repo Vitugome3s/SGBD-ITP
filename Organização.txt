@@ -1,5 +1,5 @@
-     O que precisará ser feito?
-    O que precisará ser feito?
+
+O que precisará ser feito?
 
     Criar uma tabela
 
@@ -13,4 +13,15 @@
 
     Apagar uma tupla (registro ou linha) de uma tabela
 
- Apagar uma tabela
+    Apagar uma tabela
+
+Dia 25/11
+-START
+- estrutura básica
+
+Dia 26/11
+- organizar a criação de tabelas
+- perguntar pra anna sobre pesquisar valor
+- rodar codigos antigos
+- modularização
+- listar funções necessárias

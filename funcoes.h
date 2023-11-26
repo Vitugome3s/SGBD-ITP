@@ -1,7 +1,7 @@
-#include <stdio.h>
 #ifdef FUNCOES_H
-#define FUNCOE_H
+#define FUNCOES_H
 
-void menu();
+int criar_tabela();
+void menu(void);
 
 #endif
