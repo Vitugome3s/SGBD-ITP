@@ -8,7 +8,7 @@ void menu()
 {  
 }
 
-<<<<<< Victor
+
 int criar_tabela(int x)
 {
     char name[30];
@@ -46,7 +46,3 @@ int criar_tabela(int x)
     fclose(arquivo);
     return 0;
 }
-=======
-
-
->>>>>> main
