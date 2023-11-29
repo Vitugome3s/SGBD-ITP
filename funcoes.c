@@ -54,8 +54,7 @@ void menu()
     }
 }
 
-int criar_tabela()
-{
+int criar_tabela(){
     //Variáveis
     char name[30];
     int key;
@@ -86,11 +85,10 @@ int criar_tabela()
         scanf("%d", &key);    
         fprintf(file, "%d  ", key);  //Escreve no arquivo
 
-        while (aux == 's')
-        {
+        while (aux == 's'){
             printf("Digite o nome da coluna:");
-           
-            scanf("%s", &column);
+            choice[count] = (int *)malloc(sizeof(int));
+            scanf("%29s", &column);
             fprintf(file, "| %s ", column);
             printf("Qual o tipo dos dados da coluna?\n"
                     "1 - int\n"
@@ -98,11 +96,21 @@ int criar_tabela()
                     "3 - char\n"
                     "4 - double\n"
                     "5 - string\n");
-            scanf("%d", &choice[count]);
-            fprintf(file, "(%d) ", choice[count]);
+            scanf("%d", choice[count]);
+            switch (*choice[count]){
+                case 1: fprintf(file, "(int) "); break;
+                case 2: fprintf(file, "(float) "); break;
+                case 3: fprintf(file, "(char) "); break;
+                case 4: fprintf(file, "(double) "); break;
+                case 5: fprintf(file, "(string) "); break;
+                default:printf("Erro! Opção não disponível\n"); break;
+            }
             count++; //Conta colunas
             printf("Deseja adicionar outra coluna? s ou n?");
             scanf("%s", &aux);
+        }
+        for (int i = 0; i < count; i++) {
+            free(choice[i]); 
         }
     }
     //Fecha o file

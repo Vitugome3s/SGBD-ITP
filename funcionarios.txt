@@ -1,0 +1,1 @@
+2023  | nome (string) | idade (int) | altura (float) | genero (char) | cargo (double) 
