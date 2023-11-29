@@ -90,6 +90,7 @@ int criar_tabela(){
             choice[count] = (int *)malloc(sizeof(int));
             scanf("%29s", &column);
             fprintf(file, "| %s ", column);
+            //Tipo de dados da coluna
             printf("Qual o tipo dos dados da coluna?\n"
                     "1 - int\n"
                     "2 - float\n"
@@ -105,7 +106,8 @@ int criar_tabela(){
                 case 5: fprintf(file, "(string) "); break;
                 default:printf("Erro! Opção não disponível\n"); break;
             }
-            count++; //Conta colunas
+            //Conta colunas
+            count++; 
             printf("Deseja adicionar outra coluna? s ou n?");
             scanf("%s", &aux);
         }
