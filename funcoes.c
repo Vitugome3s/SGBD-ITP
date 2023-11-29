@@ -1,25 +1,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <strings.h>
+#include <dirent.h>
 #include "funcoes.h"
+
+FILE *file;//arquivo para escrita da tabela 
+DIR *directory;//pasta com todos os arquivos de tabelas
 
 void menu()
 {
     int choice;
 
     printf("================= MENU ================= \n"
-<<<<<<< Updated upstream
-           "Escolha qual função você quer digitando: \n"
-           "1-Criar uma tabela\n"
-           "2-Listar todas as tabelas\n"
-           "3-Criar uma linha\n"
-           "4-Listar dados de uma tabela\n"
-           "5-Pesquisar valor em uma tabela\n"
-           "6-Apagar uma tupla (registro ou linha) de uma tabela\n"
-           "7-Apagar uma tabela\n"
-           "0-Sair do menu\n");
-=======
            "       Escolha a funcao desejada: \n"
            "1 - Criar uma tabela\n"
            "2 - Listar todas as tabelas\n"
@@ -29,7 +21,6 @@ void menu()
            "6 - Apagar uma tupla (registro ou linha) de uma tabela\n"
            "7 - Apagar uma tabela\n"
            "0 - Sair do menu\n");
->>>>>>> Stashed changes
 
     scanf("%d", &choice);
     switch (choice)
@@ -63,53 +54,65 @@ void menu()
     }
 }
 
-<<<<<<< Updated upstream
-int criar_tabela()
-{
-    // Escolhe o nome da tabela
-=======
 void criar_tabela(){
     //Variáveis
->>>>>>> Stashed changes
     char name[30];
-    printf("Escolha o nome de sua tabela:");
-    scanf("%s", name);
-    strcat(name, ".txt");
     int key;
     int count = 0;
-    FILE *arquivo;
-    // Abre o arquivo para escrita (w)
-    arquivo = fopen(name, "w");
-    // Verifica se o arquivo foi aberto com sucesso
-    if (arquivo == NULL)
-    {
+    char aux = 's';
+    char column[50];
+    int *choice[20];
+
+    //Nome da tabela
+    printf("Escolha o nome de sua tabela:");
+    scanf("%s", name); 
+
+    //Abre pasta e arquivo
+    char drctry[20] = "arquivos/";
+    strcat(name, ".txt");
+    strcat(drctry, name);
+    file = fopen(drctry, "w");  
+
+    //Verifica se o arquivo foi aberto com sucesso
+    if (file == NULL){
         fprintf(stderr, "Erro ao abrir o arquivo.\n");
     }
-    else
-    {
-        char aux = 's';
-        while (aux == 's')
-        {
-            count++;
-            printf("Qual a chave primária?");
-            scanf("%d", &key);
+    else{
+        //Chave primária da tabela
+        printf("Qual a chave primária?");
+        scanf("%d", &key);    
+        fprintf(file, "%d ", key);  //Escreve no arquivo
 
-            // Escreve no arquivo
-            fprintf(arquivo, "%d\n", key);
-
-            printf("Deseja adicionar outra chave? s ou n?");
+        while (aux == 's'){
+            printf("Digite o nome da coluna:");
+            choice[count] = (int *)malloc(sizeof(int));
+            scanf("%29s", &column);
+            fprintf(file, "| %s ", column);
+            //Tipo de dados da coluna
+            printf("Qual o tipo dos dados da coluna?\n"
+                    "1 - int\n"
+                    "2 - float\n"
+                    "3 - char\n"
+                    "4 - double\n"
+                    "5 - string\n");
+            scanf("%d", choice[count]);
+            switch (*choice[count]){
+                case 1: fprintf(file, "(int) "); break;
+                case 2: fprintf(file, "(float) "); break;
+                case 3: fprintf(file, "(char) "); break;
+                case 4: fprintf(file, "(double) "); break;
+                case 5: fprintf(file, "(string) "); break;
+                default:printf("Erro! Opção não disponível\n"); break;
+            }
+            //Conta colunas
+            count++; 
+            printf("Deseja adicionar outra coluna? s ou n?\n");
             scanf("%s", &aux);
         }
+        for (int i = 0; i < count; i++) {
+            free(choice[i]); 
+        }
     }
-<<<<<<< Updated upstream
-    // Fecha o arquivo
-    fclose(arquivo);
-    return 0;
-}
-
-void listar_tabelas()
-{
-=======
     //Fecha o file
     fclose(file);
     printf("\n");
@@ -134,7 +137,6 @@ void listar_tabelas(){
     closedir(directory);
     printf("\n");
     menu();
->>>>>>> Stashed changes
 }
 
 void criar_linha()
