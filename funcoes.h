@@ -3,7 +3,7 @@
 
 int criar_tabela(void);
 
-void listar_tabelas(void);
+int listar_tabelas(void);
 
 void criar_linha(void);
 

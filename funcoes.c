@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <strings.h>
+#include <dirent.h>
 #include "funcoes.h"
 
 FILE *file;//arquivo para escrita da tabela 
@@ -67,16 +67,15 @@ int criar_tabela(){
     printf("Escolha o nome de sua tabela:");
     scanf("%s", name); 
 
-    //Abre arquivos e insere nome da tabela
-    table = fopen("tabelas.txt", "a");
-    fprintf(table, "%s\n", name);
-    fclose(table);
+    //Abre pasta e arquivo
+    char drctry[20] = "arquivos/";
     strcat(name, ".txt");
-    file = fopen(name, "w");  
+    strcat(drctry, name);
+    file = fopen(drctry, "w");  
 
     //Verifica se o arquivo foi aberto com sucesso
     if (file == NULL){
-        fprintf(stderr, "Erro ao abrir o file.\n");
+        fprintf(stderr, "Erro ao abrir o arquivo.\n");
         return 1;
     }
     else{
@@ -108,7 +107,7 @@ int criar_tabela(){
             }
             //Conta colunas
             count++; 
-            printf("Deseja adicionar outra coluna? s ou n?");
+            printf("Deseja adicionar outra coluna? s ou n?\n");
             scanf("%s", &aux);
         }
         for (int i = 0; i < count; i++) {
@@ -120,7 +119,7 @@ int criar_tabela(){
     return 0;
 }
 
-void listar_tabelas()
+int listar_tabelas()
 {
 }
 
