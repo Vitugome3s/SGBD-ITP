@@ -155,6 +155,16 @@ void apagar_tupla()
 {
 }
 
-void apagar_tabela()
-{
+void apagar_tabela(){
+    char table_removed[20];
+    printf("Qual tabela deseja apagar:");
+    scanf("%s", table_removed); 
+
+    //Abre pasta e arquivo
+    char drctry[20] = "arquivos/";
+    strcat(name, ".txt");
+    strcat(drctry, name);
+    file = fopen(drctry, "w");  
+    remove("arquivos/d.txt");
+    listar_tabelas();
 }
