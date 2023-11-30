@@ -1,7 +1,7 @@
 #ifndef FUNCOES_H_INCLUDED
 #define FUNCOES_H_INCLUDED
 
-int criar_tabela(void);
+void criar_tabela(void);
 
 int listar_tabelas(void);
 

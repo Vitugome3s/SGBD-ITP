@@ -12,7 +12,7 @@ void menu()
     int choice;
 
     printf("================= MENU ================= \n"
-           "       Escolha a função desejada: \n"
+           "       Escolha a funcao desejada: \n"
            "1 - Criar uma tabela\n"
            "2 - Listar todas as tabelas\n"
            "3 - Criar uma linha\n"
@@ -54,7 +54,7 @@ void menu()
     }
 }
 
-int criar_tabela(){
+void criar_tabela(){
     //Variáveis
     char name[30];
     int key;
@@ -76,7 +76,6 @@ int criar_tabela(){
     //Verifica se o arquivo foi aberto com sucesso
     if (file == NULL){
         fprintf(stderr, "Erro ao abrir o arquivo.\n");
-        return 1;
     }
     else{
         //Chave primária da tabela
@@ -116,25 +115,28 @@ int criar_tabela(){
     }
     //Fecha o file
     fclose(file);
-    return 0;
+    printf("\n");
+    menu();
 }
 
-int listar_tabelas(){
+void listar_tabelas(){
     struct dirent *dirp;
     directory = opendir("arquivos");
     if(directory==NULL){
         printf("\nNão há nenhuma tabela registrada.\n");
-        return 0;
     }
     else{ 
-        printf("Tabelas registradas:\n");
+        printf("\nTabelas registradas:\n");
         while(dirp = readdir(directory)){
-            printf("%s\n", dirp->d_name);
+            if (strcmp(dirp->d_name, ".") != 0 && strcmp(dirp->d_name, "..") != 0) {
+            char *table_name = strtok(dirp->d_name, ".");
+            printf("%s\n", table_name);
+            }
         }
-        printf("..\n.");
     }
     closedir(directory);
-    return 1;
+    printf("\n");
+    menu();
 }
 
 void criar_linha()
