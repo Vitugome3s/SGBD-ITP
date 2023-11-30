@@ -5,7 +5,7 @@
 #include "funcoes.h"
 
 FILE *file;//arquivo para escrita da tabela 
-FILE *table;//arquivo com nome de todas as tabelas
+DIR *directory;//pasta com todos os arquivos de tabelas
 
 void menu()
 {
@@ -82,7 +82,7 @@ int criar_tabela(){
         //Chave primária da tabela
         printf("Qual a chave primária?");
         scanf("%d", &key);    
-        fprintf(file, "%d  ", key);  //Escreve no arquivo
+        fprintf(file, "%d ", key);  //Escreve no arquivo
 
         while (aux == 's'){
             printf("Digite o nome da coluna:");
@@ -119,8 +119,22 @@ int criar_tabela(){
     return 0;
 }
 
-int listar_tabelas()
-{
+int listar_tabelas(){
+    struct dirent *dirp;
+    directory = opendir("arquivos");
+    if(directory==NULL){
+        printf("\nNão há nenhuma tabela registrada.\n");
+        return 0;
+    }
+    else{ 
+        printf("Tabelas registradas:\n");
+        while(dirp = readdir(directory)){
+            printf("%s\n", dirp->d_name);
+        }
+        printf("..\n.");
+    }
+    closedir(directory);
+    return 1;
 }
 
 void criar_linha()
