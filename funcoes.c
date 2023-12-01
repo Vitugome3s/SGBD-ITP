@@ -158,23 +158,24 @@ void apagar_tupla()
 void apagar_tabela(){
     char table_removed[20];
     int count = 0;
+    //Nome da tabela a ser removida
     printf("Qual tabela deseja apagar:");
     scanf("%s", table_removed); 
     strcat(table_removed, ".txt");
-    //Testa se pasta existe
+    //Abre pasta com as tabelas
     struct dirent *dirp;
     directory = opendir("arquivos");
-     while(dirp = readdir(directory)){
-            if (strcmp(dirp->d_name, table_removed) == 0 ) {
-                char drctry[20] = "arquivos/";
-                
-                strcat(drctry, table_removed);  
-                remove(drctry);
-                printf("\nTabela removida!");
-                listar_tabelas();
-                count++;
-            }
+    while(dirp = readdir(directory)){
+        //Testa se pasta existe
+        if (strcmp(dirp->d_name, table_removed) == 0 ) {
+            char drctry[20] = "arquivos/";      
+            strcat(drctry, table_removed);  
+            remove(drctry);
+            printf("\nTabela removida!");
+            listar_tabelas();
+            count++;
         }
+    }
     if(count==0){
         printf("Tabela não existente.\n");
         listar_tabelas();
