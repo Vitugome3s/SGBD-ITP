@@ -8,7 +8,7 @@ FILE *file;     // arquivo para escrita da tabela
 DIR *directory; // pasta com todos os arquivos de tabelas
 
 void menu()
-{
+{ 
     int choice;
 
     printf("================= MENU ================= \n"
@@ -209,9 +209,10 @@ void criar_linha()
 
                 // Loop para pegar e escrever os dados na tabela
                 for (int i = 0; i < num_column; i++) {
-                    int len_cell = (strlen(name[i]) + strlen(type[i])+2);
-                    printf("Digite um(a) %s do tipo (%s: ", name[i], type[i]);
-                    scanf("%s",new_line); //CONFERIR TIPO
+                    int len_cell = strlen(name[i]) + strlen(type[i]) + 2;
+                    char new_line[len_cell];
+                    printf("Digite um(a) %s do tipo (%s): ", name[i], type[i]);
+                    scanf("%s", new_line);
                     fprintf(file, " | %*s",len_cell, new_line);  // Adiciona o valor no arquivo
             }
             printf("Deseja adicionar outra linha? s ou n?\n");
@@ -225,21 +226,28 @@ void criar_linha()
 }
 
 void listar_dados()
-{
+{   
+    char caractere;
     char table_line[30];
     printf("Qual tabela você deseja imprimir os dados?");
     scanf("%s", table_line);
     char new_table_line[30] = "arquivos/";
     strcat(table_line, ".txt");
     strcat(new_table_line, table_line);
-    file = fopen(new_table_line, "r");
+    file = fopen(new_table_line, "r+");
 
         if (file == NULL){
             fprintf(stderr, "Erro ao abrir o arquivo.\n");
         }
-        else{
-        
-    }
+        else{  
+            fseek(file,21, SEEK_CUR);
+            while ((caractere = fgetc(file)) != EOF) {
+            printf("%c", caractere);
+            }
+        }
+    fclose(file);
+    printf("\n\n");
+    menu();
 }
 
 void pesquisar_valor()

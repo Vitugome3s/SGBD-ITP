@@ -1,7 +1,10 @@
 Número de colunas:2
-  PK  |     Nome (char) | Idade (int) 
+    5 |     Nome (char) | Idade (int) 
   69  |          Victor |          20
   86  |       Gabrielle |          19
   63  |             Paz |          18
   23  |           Ramon |          19
   96  |            Jere |          18
+  56  |            Caua |          12
+  98  |               3 |           3
+  36  |            nome |         sas
