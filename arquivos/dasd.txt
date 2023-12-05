@@ -1,0 +1,2 @@
+Número de colunas:2
+ 532  | sdas (float) | dsadda (double) 
