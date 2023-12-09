@@ -238,6 +238,7 @@ void listar_dados()
 
         if (file == NULL){
             fprintf(stderr, "Erro ao abrir o arquivo.\n");
+            
         }
         else{  
             fseek(file,21, SEEK_CUR);
@@ -255,9 +256,31 @@ void pesquisar_valor()
 }
 
 void apagar_tupla()
-{
+{   
+    char caractere;
+    char table_line[30];
+    printf("Qual tabela você deseja apagar uma tupla?");
+    scanf("%s", table_line);
+    char new_table_line[30] = "arquivos/";
+    strcat(table_line, ".txt");
+    strcat(new_table_line, table_line);
+    file = fopen(new_table_line, "r+");
 
+        if (file == NULL){
+            fprintf(stderr, "Erro ao abrir o arquivo.\n");
+        }
+        else{
+        
+            fseek(file,21, SEEK_CUR);
+            while ((caractere = fgetc(file)) != EOF) {
+            printf("%c", caractere);
+            }
+        }
+    fclose(file);
+    printf("\n\n");
+    menu();
 }
+
 
 void apagar_tabela()
 {
