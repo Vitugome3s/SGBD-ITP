@@ -1,2 +1,6 @@
 Número de colunas:2
- 532  | sdas (float) | dsadda (double) 
+  PK  | Nome (float) | Idade (int)
+  52  |            a |           a
+  65  |            adsasdasd |   adasda
+  65  |               asdasd | asdadsdas
+ 455  |               dasdas |   asdasd

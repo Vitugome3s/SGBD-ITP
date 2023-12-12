@@ -1,7 +1,0 @@
-Número de colunas:3
-  56  | akla (double) | asdasd (float) | fdsgdf (char) 
-  53  |          sdsf |            asd |          asda
-   5  |           sad |          dsada |          sdaa
-   3  |       asdaasd |          asdas |        asdada
-
-   

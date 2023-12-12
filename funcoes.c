@@ -3,12 +3,13 @@
 #include <string.h>
 #include <dirent.h>
 #include "funcoes.h"
+#include <unistd.h>
 
 FILE *file;     // arquivo para escrita da tabela
 DIR *directory; // pasta com todos os arquivos de tabelas
 
 void menu()
-{ 
+{
     int choice;
 
     printf("================= MENU ================= \n"
@@ -79,7 +80,7 @@ void criar_tabela()
     {
         // Imprimir o número de colunas no cabeçalho
         num_column = 0;
-        fprintf(file, "Número de colunas:%d\n",num_column);
+        fprintf(file, "Número de colunas:%d\n", num_column);
 
         // Chave primária da tabela
 
@@ -132,7 +133,7 @@ void criar_tabela()
             free(choice[i]);
         }
     }
-    //Atualizar o cabeçalho
+    // Atualizar o cabeçalho
     fseek(file, 0, SEEK_SET);
     fprintf(file, "Número de colunas:%d", num_column);
     // Fecha o file
@@ -167,12 +168,12 @@ void listar_tabelas()
 }
 
 void criar_linha()
-{   
+{
     int key;
     int num_column;
     char table_line[30];
     char aux = 's';
-        
+
     printf("Em qual tabela deseja criar uma linha?");
     scanf("%s", table_line);
     char new_table_line[30] = "arquivos/";
@@ -180,45 +181,47 @@ void criar_linha()
     strcat(new_table_line, table_line);
     file = fopen(new_table_line, "r+");
 
-        if (file == NULL){
-            fprintf(stderr, "Erro ao abrir o arquivo.\n");
+    if (file == NULL)
+    {
+        fprintf(stderr, "Erro ao abrir o arquivo.\n");
+    }
+    else
+    {
 
+        fseek(file, 0, SEEK_SET); // Ir para a parte inicial do arquivo
+
+        fscanf(file, "Número de colunas:%d", &num_column); // Ler o número de colunas
+
+        char name[num_column][30];
+        char type[num_column][30];
+        fscanf(file, "%*d");
+        for (int i = 0; i < num_column; i++)
+        {
+            fscanf(file, " | %s (%s)", name[i], type[i]);
         }
-        else{
+        while (aux == 's')
+        {
+            fseek(file, 0, SEEK_END); // ir para o final do documento
 
-            fseek(file,0, SEEK_SET);           //Ir para a parte inicial do arquivo
+            // Chave primária da linha
+            char new_line[30];
+            printf("Qual a chave primaria?");
+            scanf("%d", &key);
+            fprintf(file, "\n%*d ", 4, key);
 
-            fscanf(file, "Número de colunas:%d", &num_column);     //Ler o número de colunas 
-
-
-            char name[num_column][30];
-            char type[num_column][30];
-            fscanf(file,"%*d");
-            for(int i=0;i<num_column;i++){
-                fscanf(file, " | %s (%s)", name[i], type[i]);
-            }
-            while (aux == 's')
+            // Loop para pegar e escrever os dados na tabela
+            for (int i = 0; i < num_column; i++)
             {
-                fseek(file, 0, SEEK_END); // ir para o final do documento
-
-                //Chave primária da linha
-                char new_line[30];
-                printf("Qual a chave primaria?");
-                scanf("%d", &key);
-                fprintf(file, "\n%*d ", 4, key);
-
-                // Loop para pegar e escrever os dados na tabela
-                for (int i = 0; i < num_column; i++) {
-                    int len_cell = strlen(name[i]) + strlen(type[i]) + 2;
-                    char new_line[len_cell];
-                    printf("Digite um(a) %s do tipo (%s): ", name[i], type[i]);
-                    scanf("%s", new_line);
-                    fprintf(file, " | %*s",len_cell, new_line);  // Adiciona o valor no arquivo
+                int len_cell = strlen(name[i]) + strlen(type[i]) + 2;
+                char new_line[len_cell];
+                printf("Digite um(a) %s do tipo (%s): ", name[i], type[i]);
+                scanf("%s", new_line);
+                fprintf(file, " | %*s", len_cell, new_line); // Adiciona o valor no arquivo
             }
             printf("Deseja adicionar outra linha? s ou n?\n");
             scanf("%s", &aux);
         }
-        }
+    }
 
     fclose(file);
     printf("\n");
@@ -226,7 +229,7 @@ void criar_linha()
 }
 
 void listar_dados()
-{   
+{
     char caractere;
     char table_line[30];
     printf("Qual tabela você deseja imprimir os dados?");
@@ -236,16 +239,18 @@ void listar_dados()
     strcat(new_table_line, table_line);
     file = fopen(new_table_line, "r+");
 
-        if (file == NULL){
-            fprintf(stderr, "Erro ao abrir o arquivo.\n");
-            
-        }
-        else{  
-            fseek(file,21, SEEK_CUR);
-            while ((caractere = fgetc(file)) != EOF) {
+    if (file == NULL)
+    {
+        fprintf(stderr, "Erro ao abrir o arquivo.\n");
+    }
+    else
+    {
+        fseek(file, 21, SEEK_CUR);
+        while ((caractere = fgetc(file)) != EOF)
+        {
             printf("%c", caractere);
-            }
         }
+    }
     fclose(file);
     printf("\n\n");
     menu();
@@ -256,55 +261,92 @@ void pesquisar_valor()
 }
 
 void apagar_tupla()
-{   
-    char caractere;
-    char table_line[30];
-    printf("Qual tabela você deseja apagar uma tupla?");
-    scanf("%s", table_line);
-    char new_table_line[30] = "arquivos/";
-    strcat(table_line, ".txt");
-    strcat(new_table_line, table_line);
-    file = fopen(new_table_line, "r+");
+{
+    FILE *file, *temp;
 
-        if (file == NULL){
-            fprintf(stderr, "Erro ao abrir o arquivo.\n");
+    // Pegar o nome da tabela que deseja abrir.
+    char Table_name[30];
+    printf("Em qual tabela deseja apagar uma tupla?");
+    scanf("%s", &Table_name);
+    char new_table_name[30] = "arquivos/";
+    strcat(Table_name, ".txt");
+    strcat(new_table_name, Table_name);
+
+    // Perguntar qual chave primária deseja apagar.
+    printf("Qual chave primaria deseja apagar? ");
+    int chavePrimaria;
+    scanf("%d", &chavePrimaria);
+
+    // Abre o arquivo no modo leitura e escrita
+    char linha[1000];
+    file = fopen(new_table_name, "r");
+    if (file == NULL)
+    {
+        printf("Erro ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+
+    // Cria um arquivo temporário no modo escrita
+    temp = fopen("temp.txt", "w");
+    if (temp == NULL)
+    {
+        printf("Erro ao criar arquivo temporario");
+        fclose(file);
+        exit(EXIT_FAILURE);
+    }
+
+    // Lê e escreve linha por linha, ignorando a linha com a chave primária
+    int pkLida;
+    while (fgets(linha, sizeof(linha), file) != NULL)
+    {
+        sscanf(linha, "%d", &pkLida);
+
+        // Se a linha não contiver a chave primária, escreva no arquivo temporário
+        if (pkLida != chavePrimaria)
+        {
+            fputs(linha, temp);
         }
-        else{
-        
-            fseek(file,21, SEEK_CUR);
-            while ((caractere = fgetc(file)) != EOF) {
-            printf("%c", caractere);
-            }
-        }
+    }
+
+    // Fecha os arquivos abertos
     fclose(file);
+    fclose(temp);
+
+    // Remove o arquivo original e renomear o arquivo temporário
+    remove(new_table_name);
+    rename("temp.txt", new_table_name);
+
+    printf("Tupla com chave primaria %d removida com sucesso.\n", chavePrimaria);
     printf("\n\n");
     menu();
 }
-
 
 void apagar_tabela()
 {
     char table_removed[20];
     int count = 0;
-    //Nome da tabela a ser removida
+    // Nome da tabela a ser removida
     printf("Qual tabela deseja apagar:");
-    scanf("%s", table_removed); 
+    scanf("%s", table_removed);
     strcat(table_removed, ".txt");
-    //Abre pasta com as tabelas
+    // Abre pasta com as tabelas
     struct dirent *dirp;
     directory = opendir("arquivos");
-    while(dirp = readdir(directory)){
-        //Testa se pasta existe
-        if (strcmp(dirp->d_name, table_removed) == 0 ) {
-            char drctry[20] = "arquivos/";      
-            strcat(drctry, table_removed);  
+    while (dirp = readdir(directory))
+    {
+        // Testa se pasta existe
+        if (strcmp(dirp->d_name, table_removed) == 0)
+        {
+            char drctry[20] = "arquivos/";
+            strcat(drctry, table_removed);
             remove(drctry);
             printf("\nTabela removida!");
             listar_tabelas();
             count++;
         }
     }
-    if(count==0){
+    if (count == 0)
+    {
         printf("Tabela não existente.\n");
         listar_tabelas();
     }

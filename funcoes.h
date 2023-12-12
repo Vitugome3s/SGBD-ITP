@@ -1,8 +1,15 @@
 #ifndef FUNCOES_H_INCLUDED
 #define FUNCOES_H_INCLUDED
 
+typedef struct {
+    char data[30][30][30];
+    int numRows;
+    int numCols;
+} Table;
 
 void criar_tabela(void);
+
+char ajustar_nome(void);
 
 void listar_tabelas(void);
 

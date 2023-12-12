@@ -1,0 +1,6 @@
+Número de colunas:2
+  52  | Nome (string) | Idade (int) 
+ 658  |      Victor |          20
+4514  |        Jere |          19
+5645  |        Caua |          19
+  65  |        Gabi |          19
