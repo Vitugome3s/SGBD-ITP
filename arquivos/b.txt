@@ -1,4 +1,0 @@
-Número de colunas:3
-  32  | adsasd (float) | dsfds (float) | fgfg (char) 
- 312  |          adsad |        sadasd |       dasdsa
- 123  |          adsdd |        asdads |       asdasd
