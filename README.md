@@ -1,6 +1,6 @@
 # Sistema de Gerenciamento de Banco de Dados (SGBD) - Projeto de Introdução a Técnicas de Programação
 
-## Descrição
+# Descrição
     O Sistema de Gerenciamento de Banco de Dados (SGBD) é um projetodesenvolvido em linguagem C pelos alunos Gabrielle Borja e Victor Gomes como parte da disciplina de Introdução a Técnicas de Programação no Instituto Metrópole Digital (IMD) da Universidade Federal do Rio Grande do Norte (UFRN). O principal objetivo do SGBD é fornecer uma plataforma simples e eficaz para a criação, manipulação e consulta de dados em um ambiente de banco de dados. 
 
 ## Funcionalidades
