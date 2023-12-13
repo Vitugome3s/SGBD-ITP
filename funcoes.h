@@ -10,6 +10,8 @@ void criar_linha(void);
 
 void listar_dados(void);
 
+void listar_dados_p(char*);
+
 void pesquisar_valor(void);
 
 void apagar_tupla(void);

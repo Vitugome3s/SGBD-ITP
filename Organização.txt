@@ -20,6 +20,6 @@ Dia 25/11
 Dia 26/11
 - organizar a criação de tabelas
 - perguntar pra anna sobre pesquisar valor
-- rodar codigos antigos
+- rodar codigos antigos CHECK
 - modularização CHECK
 - listar funções necessárias
