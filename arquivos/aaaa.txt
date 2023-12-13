@@ -1,0 +1,4 @@
+Número de colunas:3
+   3  | nome (string) | idade (int) | genero (char) 
+   1  |           ana |          21 |             m
+   7  |           oii |           8 |             m

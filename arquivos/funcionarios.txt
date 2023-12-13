@@ -1,1 +1,0 @@
-22  | oi (char) | nome (string) 
