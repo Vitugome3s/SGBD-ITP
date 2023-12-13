@@ -1,5 +1,4 @@
-Número de colunas:2
-Chaves:52 52 6586    
+Número de colunas:2  
   56  | Nome (char) | Idade (int) 
   69  | Victor | 20
   86  | Gabrielle | 19
