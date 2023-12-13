@@ -1,4 +1,5 @@
 Número de colunas:3
-   3  | nome (string) | idade (int) | genero (char) 
+   PK  | nome (string) | idade (int) | genero (char) 
    1  |           ana |          21 |             m
    7  |           oii |           8 |             m
+   3  |           kkk |          19 |             m
