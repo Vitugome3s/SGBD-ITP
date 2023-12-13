@@ -35,6 +35,6 @@
 3. Compile o código-fonte.
    - Abra o terminal na pasta onde o programa se encontra
    - Execute o comando:
-   gcc SGBD-ITP.c funcoes.c -o main
+   'gcc SGBD-ITP.c funcoes.c -o main'
    - O comando criará um arquivo main.exe, que pode ser executado através do comando:
-   ./main 
+   './main' 
