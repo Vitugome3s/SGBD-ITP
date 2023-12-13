@@ -1,7 +1,0 @@
-Número de colunas:2
-  PK  | azul (char) | lala (char) 
-  32  |       verde |         dsd
-  56  |        asda |        sdad
-  25  |         SDA |    ASDASDAS
-  32  |          do |          do
-  35  |      SDAFSD |    DFASDFAS

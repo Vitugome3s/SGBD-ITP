@@ -90,7 +90,6 @@ void criar_tabela()
     {
         fprintf(stderr, "Erro ao abrir o arquivo.\n");
         printf("\n");
-        menu();
     }
     else
     {
@@ -98,7 +97,7 @@ void criar_tabela()
         num_column = 0;
         fprintf(file, "Número de colunas:%d\n",num_column);
 
-        fprintf(file, "PK  ", key); // Escreve no arquivo
+        fprintf(file, "  PK  ", key); // Escreve no arquivo
 
         while (aux == 's')
         {
@@ -450,6 +449,7 @@ void apagar_tabela(){
             printf("\nTabela removida!");
             listar_tabelas();
             count++;
+            menu();
         }
     }
     if(count==0){

@@ -1,0 +1,7 @@
+Número de colunas:4
+  PK  | nome (string) | idade (int) | altura (float) | genero (char) 
+   1  |           ana |          31 |           1.56 |             f
+   2  |          joao |          40 |           1.89 |             m
+   3  |       mariana |          12 |           1.60 |             f
+   4  |     gabrielle |          19 |           1.60 |             f
+   5  |        victor |          20 |           1.75 |             m
