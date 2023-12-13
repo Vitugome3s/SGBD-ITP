@@ -385,10 +385,12 @@ void apagar_tupla()
     char new_table_name[30] = "arquivos/";
     strcat(Table_name, ".txt");
     strcat(new_table_name, Table_name);
+    
+    listar_dados_p(new_table_name);
 
     // Perguntar qual chave primária deseja apagar.
     printf("Qual chave primaria deseja apagar? ");
-    int chavePrimaria;
+    int chavePrimaria; 
     scanf("%d", &chavePrimaria);
 
     // Abre o arquivo no modo leitura e escrita
